@@ -24,6 +24,7 @@ import limited.it.planet.incomingcallrecordapp.R;
 import limited.it.planet.incomingcallrecordapp.fragments.AppFragment;
 import limited.it.planet.incomingcallrecordapp.fragments.DashboardFragment;
 import limited.it.planet.incomingcallrecordapp.fragments.SettingsFragment;
+import limited.it.planet.incomingcallrecordapp.util.FontCustomization;
 import limited.it.planet.incomingcallrecordapp.util.ToolbarUI;
 
 import static limited.it.planet.incomingcallrecordapp.util.SharedPreferenceSaveAndGet.getBoleanValueSharedPreferences;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements ToolbarUI{
     ActionBar actionBar;
     public static TextView headerText;
     public static boolean checkAutoStartPermission;
+    FontCustomization fontCustomization;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements ToolbarUI{
 
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavigation);
         addBottomNavigationItems();
+        fontCustomization = new FontCustomization(MainActivity.this);
+        headerText.setTypeface(fontCustomization.getTexgyreHerosBold());
+
        // String manufacturer = android.os.Build.MANUFACTURER;
         checkAutoStartPermission = getBoleanValueSharedPreferences("auto_start",MainActivity.this);
 

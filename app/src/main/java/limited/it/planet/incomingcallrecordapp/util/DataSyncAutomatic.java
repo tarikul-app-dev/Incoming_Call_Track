@@ -22,8 +22,14 @@ public class DataSyncAutomatic extends BroadcastReceiver{
     String userNumber = "";
     String smsText = "";
 
+    SendMobNumberToServer sendMobNumberToServer ;
+    SendSMSSendToServer sendSMSSendToServer;
+
     @Override
     public void onReceive(Context context, Intent intent) {
+        sendMobNumberToServer = new SendMobNumberToServer(context);
+        sendSMSSendToServer = new SendSMSSendToServer(context);
+
         dataHelper = new DataHelper(context);
         dataHelper.open();
 
@@ -33,7 +39,16 @@ public class DataSyncAutomatic extends BroadcastReceiver{
                 for (int i = 0; i < trackingList.size(); i++) {
                     userNumber = trackingList.get(i).getUserNumber();
                     smsText = trackingList.get(i).getSmsText();
+
+                    if(smsText.isEmpty()){
+                        sendMobNumberToServer.mobileNumberSendToServer(userNumber);
+                    }
+                    if(!userNumber.isEmpty()&&!smsText.isEmpty()){
+                        sendSMSSendToServer.smsSendToServer(smsText,userNumber);
+                    }
                 }
+
+
 
                 Log.d("Network", "Internet YAY");
         }

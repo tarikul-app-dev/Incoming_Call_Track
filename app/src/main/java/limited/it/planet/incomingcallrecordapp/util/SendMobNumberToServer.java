@@ -36,7 +36,6 @@ public class SendMobNumberToServer {
 
     Context mContext;
     DataHelper dataHelper;
-
       public  SendMobNumberToServer(Context context){
             this.mContext = context;
           sendMobNumberAPI = getValueFromSharedPreferences("base_api",mContext);

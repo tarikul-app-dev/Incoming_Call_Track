@@ -18,6 +18,7 @@ import android.widget.Toast;
 import limited.it.planet.incomingcallrecordapp.R;
 import limited.it.planet.incomingcallrecordapp.constant.Constants;
 import limited.it.planet.incomingcallrecordapp.database.DataHelper;
+import limited.it.planet.incomingcallrecordapp.util.FontCustomization;
 import limited.it.planet.incomingcallrecordapp.util.SendMobNumberToServer;
 import limited.it.planet.incomingcallrecordapp.util.SendSMSSendToServer;
 
@@ -31,28 +32,23 @@ public class SettingsFragment extends AppFragment {
 
     static EditText edtHTTPURLCall,editTextParamMobile,editTextParamSMS;
     CheckBox checkBoxMobile,checkBoxSMS;
-    TextView txvHelpCall ;
+    TextView txvHelpCall ,txvSendSMSAndPh,txvForInHttp;
 
     static String sendMobNumberAPI = "";
     static String sendSmsAPI = "";
-
     public static String httpURLNumerfromEDT = "";
-    //public static String httpURLSMSfromEDT = "";
     public static String paramMobile = "";
     public static String paramSMS = "";
-
-   // public static String mobile = "";
     static SendMobNumberToServer sendMobNumberToServer;
     static SendSMSSendToServer sendSMSSendToServer;
-//   static boolean chageHTTPByUser;
-//   static boolean chageHTTPSMSByUser;
-//    static boolean chageMobileByUser;
-//    static boolean chageSMSByUser;
+
    static boolean isCheckMobileNumber;
    static boolean isCheckSMS ;
 
    Button btnSave;
    DataHelper dataHelper;
+
+   FontCustomization fontCustomization;
 
 
     public SettingsFragment() {
@@ -66,6 +62,7 @@ public class SettingsFragment extends AppFragment {
         sendSMSSendToServer= new SendSMSSendToServer(getActivity());
         dataHelper = new DataHelper(getActivity());
         dataHelper.open();
+        fontCustomization = new FontCustomization(getActivity());
 
     }
 
@@ -80,10 +77,23 @@ public class SettingsFragment extends AppFragment {
         editTextParamSMS = (EditText)rootView.findViewById(R.id.edt_param_sms);
         checkBoxMobile =(CheckBox)rootView.findViewById(R.id.checkbox_send_incoming_number);
         checkBoxSMS = (CheckBox)rootView.findViewById(R.id.checkbox_send_sms);
+        txvSendSMSAndPh = (TextView)rootView.findViewById(R.id.txv_send_sms_ph);
+        txvForInHttp = (TextView)rootView.findViewById(R.id.txv_forward_in_http);
 
         //edtShowNumber = (EditText)rootView.findViewById(R.id.edt_show_number);
         txvHelpCall = (TextView)rootView.findViewById(R.id.txv_help_call);
         btnSave = (Button)rootView.findViewById(R.id.btn_save);
+
+        edtHTTPURLCall.setTypeface(fontCustomization.getTexgyreHerosRegular());
+        editTextParamMobile.setTypeface(fontCustomization.getTexgyreHerosRegular());
+        editTextParamSMS.setTypeface(fontCustomization.getTexgyreHerosRegular());
+        checkBoxMobile.setTypeface(fontCustomization.getTexgyreHerosRegular());
+        checkBoxSMS.setTypeface(fontCustomization.getTexgyreHerosRegular());
+        txvHelpCall.setTypeface(fontCustomization.getTexgyreHerosRegular());
+        btnSave.setTypeface(fontCustomization.getTexgyreHerosRegular());
+        txvSendSMSAndPh.setTypeface(fontCustomization.getTexgyreHerosRegular());
+        txvForInHttp.setTypeface(fontCustomization.getTexgyreHerosRegular());
+
 
 
         sendMobNumberAPI = Constants.baseAPI;

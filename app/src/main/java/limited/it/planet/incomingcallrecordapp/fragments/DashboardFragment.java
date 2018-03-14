@@ -24,6 +24,7 @@ import android.widget.Toast;
 import limited.it.planet.incomingcallrecordapp.R;
 import limited.it.planet.incomingcallrecordapp.activity.LogViewActivity;
 import limited.it.planet.incomingcallrecordapp.constant.Constants;
+import limited.it.planet.incomingcallrecordapp.util.FontCustomization;
 import limited.it.planet.incomingcallrecordapp.util.MyPhoneReceiver;
 import limited.it.planet.incomingcallrecordapp.util.SendMobNumberToServer;
 
@@ -36,6 +37,7 @@ public class DashboardFragment extends AppFragment {
 
     Switch swAutoCallEnd,swAppONOff;
     Button btnViewLog;
+    FontCustomization fontCustomization;
 
   //  boolean chageHTTPByUser;
 
@@ -49,7 +51,7 @@ public class DashboardFragment extends AppFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        fontCustomization = new FontCustomization(getActivity());
 
 
     }
@@ -64,7 +66,9 @@ public class DashboardFragment extends AppFragment {
         swAppONOff = (Switch)rootView.findViewById(R.id.switch_app_on_off) ;
         btnViewLog = (Button)rootView.findViewById(R.id.btn_view_log);
 
-       // swAutoCallEnd.setChecked(false);
+        swAutoCallEnd.setTypeface(fontCustomization.getTexgyreHerosRegular());
+        swAppONOff.setTypeface(fontCustomization.getTexgyreHerosRegular());
+        btnViewLog.setTypeface(fontCustomization.getTexgyreHerosRegular());
 
         swAutoCallEnd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -115,6 +119,8 @@ public class DashboardFragment extends AppFragment {
             startActivity(intent);
         }
     });
+
+
 
         return rootView;
     }

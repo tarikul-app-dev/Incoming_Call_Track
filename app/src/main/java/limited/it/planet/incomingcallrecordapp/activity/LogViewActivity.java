@@ -119,21 +119,6 @@ public class LogViewActivity extends AppCompatActivity {
             }
         });
 
-
-        listViewLog.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                // TODO Auto-generated method stub
-
-            }
-        });
-
-
-
-
     }
 
     public void initializeUI(){
@@ -148,5 +133,15 @@ public class LogViewActivity extends AppCompatActivity {
         csvFileExport = new CsvFileExport(LogViewActivity.this);
 
 
+    }
+
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+//        rowItems.clear();
+//        rowItems = dataHelper.getInputData();
+        viewLogAdapter.notifyDataSetChanged();
     }
 }
